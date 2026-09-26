@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5fa">
+  <meta name="description" content="Mina Park is a designer working across digital products, physical environments, and spatial technology.">
+  <title>{{ {'work': 'Selected work', 'extra': 'Extra things', 'about': 'About'}[view] }} — Mina Park, designer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='portfolio.css') }}">
+</head>
+<body class="portfolio-page">
+  <div class="site-shell">
+    <header class="site-header cursor-zone cursor-zone--header">
+      <a class="signature" href="{{ url_for('portfolio.work') }}" aria-label="Mina Park, home">
+        <span class="signature-icon" aria-hidden="true">m<span>·</span></span>
+        <span class="signature-name">MINA PARK <span>DESIGNER</span></span>
+      </a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        {% for key, label in navigation %}
+          <a class="nav-link{% if view == key %} is-active{% endif %}"
+             href="{{ url_for('portfolio.' + key) }}"{% if view == key %} aria-current="page"{% endif %}>
+            {{ label }}<span class="nav-arrow" aria-hidden="true">↗</span>
+          </a>
+        {% endfor %}
+      </nav>
+    </header>
+
+    <main>
+      {% if view == 'work' %}
+        <section class="work-intro cursor-zone cursor-zone--intro">
+          <div class="intro-label"><span class="availability-dot"></span> INDEPENDENT DESIGNER · BROOKLYN & EVERYWHERE</div>
+          <h1>Making the complex<br>feel <span class="headline-script">more human.</span><span class="asterisk" aria-hidden="true">✳</span></h1>
+          <div class="intro-bottom">
+            <p>Designing digital products, physical environments, and spatial technology that help people find their way.</p>
+            <a class="round-link" href="#selected-work" aria-label="Explore selected work"><span aria-hidden="true">↓</span></a>
+          </div>
+          <span class="intro-index" aria-hidden="true">01 / 03</span>
+        </section>
+
+        <section class="work-section" id="selected-work" aria-labelledby="work-heading">
+          <div class="section-heading cursor-zone cursor-zone--heading">
+            <div><span class="section-kicker">A FEW THINGS, OUT IN THE WORLD</span><h2 id="work-heading">Selected work<span class="heading-count"> (06)</span></h2></div>
+            <span class="section-side-note">2023 — 2025</span>
+          </div>
+          <div class="project-grid">
+            {% for project in projects %}
+              <article class="project-card cursor-zone cursor-zone--project-{{ loop.index }}">
+                <div class="project-image-wrap project-tone--{{ project.tone }}">
+                  <img class="project-image" src="https://images.unsplash.com/{{ project.image }}?auto=format&fit=crop&w=1200&q=82" alt="{{ project.alt }}" loading="lazy">
+                  <span class="project-number">{{ project.number }}</span>
+                  <span class="project-open" aria-hidden="true">↗</span>
+                  {% if loop.first %}<span class="image-caption">SPACE TO FIND YOUR WAY</span>{% endif %}
+                </div>
+                <div class="project-caption"><h3>{{ project.name }}</h3><span>{{ project.type }}</span><span class="project-year">{{ project.year }}</span></div>
+                <p class="project-placeholder">Independent concept · Portfolio study</p>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="closing-note cursor-zone cursor-zone--closing"><p>Have a good, complicated thing in mind?</p><a href="mailto:hello@minapark.design">Let's figure it out <span aria-hidden="true">↗</span></a></section>
+
+      {% elif view == 'extra' %}
+        <section class="subpage-intro cursor-zone cursor-zone--intro">
+          <span class="section-kicker">THE SIDE ROADS ARE OFTEN THE GOOD PART</span>
+          <h1>A few things<br>made <span class="headline-script">just because.</span></h1>
+          <p>Off-brief observations, visual experiments, places, and other things I wanted to spend a little more time with.</p>
+        </section>
+        <section class="extra-section" aria-labelledby="extra-heading">
+          <div class="section-heading cursor-zone cursor-zone--heading"><div><span class="section-kicker">OUTSIDE THE DAY JOB</span><h2 id="extra-heading">Extra things<span class="heading-count"> (04)</span></h2></div><span class="section-side-note">STUDIES & SIDE PROJECTS</span></div>
+          <div class="extra-grid">
+            {% for item in extras %}
+              <article class="extra-card cursor-zone cursor-zone--project-{{ loop.index }}">
+                <div class="extra-image-wrap project-tone--{{ item.tone }}"><img src="https://images.unsplash.com/{{ item.image }}?auto=format&fit=crop&w=1100&q=82" alt="{{ item.alt }}" loading="lazy"><span class="project-open" aria-hidden="true">↗</span></div>
+                <div class="extra-caption"><h3>{{ item.name }}</h3><span>{{ item.type }}</span></div>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+        <section class="extra-note cursor-zone cursor-zone--closing"><span class="section-kicker">CURRENTLY CURIOUS ABOUT</span><p>Local maps, very small museums, and how buildings tell you where to go.</p></section>
+
+      {% else %}
+        <section class="about-intro cursor-zone cursor-zone--intro">
+          <div class="about-copy"><span class="section-kicker">A LITTLE ABOUT ME</span><h1>Hi, I'm Mina.<br><span class="headline-script">I pay attention.</span></h1>
+            <p class="about-lede">I'm a designer working across digital products, physical environments, and spatial technology.</p>
+            <p>I make interactions that help people understand where they are, what's changing, and what to do next. I care about the in-between moments: the sign that makes a place feel legible, the tiny decision that makes a product feel considerate, the interface that meets you where you actually are.</p>
+            <p>My practice moves between product and place. I bring research, prototyping, visual systems, and wayfinding together to make complicated experiences feel calm, clear, and a little more human.</p>
+            <div class="about-links"><a class="text-link" href="{{ url_for('portfolio.resume') }}">Download résumé <span aria-hidden="true">↗</span></a><a class="text-link" href="mailto:hello@minapark.design">Say hello by email <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <aside class="about-aside"><div class="portrait-art" role="img" aria-label="An abstract illustration of a sunlit landscape, a portrait placeholder"><span class="portrait-sun"></span><span class="portrait-hill portrait-hill--back"></span><span class="portrait-hill portrait-hill--front"></span><span class="portrait-caption">SOMEWHERE BETWEEN HERE & THERE</span></div><div class="aside-caption"><span>BASED IN BROOKLYN, NEW YORK</span><span>AVAILABLE FOR SELECT PROJECTS</span></div></aside>
+        </section>
+        <section class="about-details cursor-zone cursor-zone--closing"><div><span class="section-kicker">HOW I LIKE TO WORK</span><p>Curious first. Clear about the hard parts. Generous with the details.</p></div><div><span class="section-kicker">THINGS I CAN HELP WITH</span><p>Digital product · Wayfinding · Service design · Spatial experience · Visual systems</p></div></section>
+      {% endif %}
+    </main>
+
+    <footer class="site-footer cursor-zone cursor-zone--footer"><a href="mailto:hello@minapark.design">A good place to start: <span>hello@minapark.design ↗</span></a><span>MADE SLOWLY, WITH INTENTION <span class="footer-spark" aria-hidden="true">✳</span> © MINA PARK 2025</span></footer>
+  </div>
+</body>
+</html>

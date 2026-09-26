@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5f0">
+  <title>Fieldnote Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-theme="{{ theme }}">
+  <main class="workspace">
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Fieldnote Calculator home">
+        <span class="mark" aria-hidden="true">f.</span>
+        <span>fieldnote<span class="wordmark-light"> / tools</span></span>
+      </a>
+      <span class="topbar-note"><span class="status-dot"></span> SCIENTIFIC · RAD</span>
+    </header>
+
+    <section class="calculator" aria-labelledby="page-title">
+      <div class="intro">
+        <p class="eyebrow">A little clarity, by the numbers</p>
+        <h1 id="page-title">Fieldnote <span>Calculator</span></h1>
+        <p class="intro-copy">Everyday arithmetic, with a little more room to think.</p>
+        <div class="intro-rule"><span>01</span><span>PRECISION, WITHOUT THE NOISE</span></div>
+      </div>
+
+      <section class="instrument" aria-label="Scientific calculator">
+        <div class="instrument-heading">
+          <span>CALCULATOR</span>
+          <span class="live-indicator"><span></span> READY</span>
+        </div>
+
+        <iframe class="display-frame" name="calculator-display"
+                src="{{ url_for('display') }}" title="Calculation display"></iframe>
+
+        <form class="calculator-form" method="post" action="{{ url_for('display') }}" target="calculator-display">
+          <div class="keypad-layout">
+            <section class="scientific-pad" aria-label="Scientific operations">
+              <div class="group-label">FUNCTIONS</div>
+              {% for key, label in [('sin','sin'),('cos','cos'),('tan','tan'),('asin','sin⁻¹'),('acos','cos⁻¹'),('atan','tan⁻¹'),('sqrt','√'),('root','ⁿ√'),('square','x²'),('cube','x³'),('power','xʸ'),('log','log'),('ln','ln'),('pi','π'),('e','e'),('open','('),('close',')'),('modulo','%')] %}
+                <button class="key key-science" type="submit" name="key" value="{{ key }}" aria-label="{{ {'sqrt':'square root','root':'nth root','square':'square','cube':'cube','power':'power','pi':'pi','e':'Euler\'s number','open':'open parenthesis','close':'close parenthesis','modulo':'modulo'}.get(key, label) }}">{{ label }}</button>
+              {% endfor %}
+            </section>
+
+            <section class="number-pad" aria-label="Number pad and arithmetic operations">
+              <div class="group-label">NUMBERS <span>·</span> OPERATORS</div>
+              <div class="number-grid">
+                <button class="key key-utility" type="submit" name="key" value="clear">AC</button>
+                <button class="key key-utility" type="submit" name="key" value="backspace" aria-label="Backspace">⌫</button>
+                <button class="key key-operator" type="submit" name="key" value="open" aria-label="Open parenthesis">(</button>
+                <button class="key key-operator" type="submit" name="key" value="divide" aria-label="Divide">÷</button>
+
+                <button class="key" type="submit" name="key" value="seven">7</button>
+                <button class="key" type="submit" name="key" value="eight">8</button>
+                <button class="key" type="submit" name="key" value="nine">9</button>
+                <button class="key key-operator" type="submit" name="key" value="multiply" aria-label="Multiply">×</button>
+
+                <button class="key" type="submit" name="key" value="four">4</button>
+                <button class="key" type="submit" name="key" value="five">5</button>
+                <button class="key" type="submit" name="key" value="six">6</button>
+                <button class="key key-operator" type="submit" name="key" value="subtract" aria-label="Subtract">−</button>
+
+                <button class="key" type="submit" name="key" value="one">1</button>
+                <button class="key" type="submit" name="key" value="two">2</button>
+                <button class="key" type="submit" name="key" value="three">3</button>
+                <button class="key key-operator" type="submit" name="key" value="add" aria-label="Add">+</button>
+
+                <button class="key key-operator" type="submit" name="key" value="close" aria-label="Close parenthesis">)</button>
+                <button class="key" type="submit" name="key" value="zero">0</button>
+                <button class="key" type="submit" name="key" value="decimal">.</button>
+                <button class="key key-equals" type="submit" name="key" value="equals" aria-label="Calculate">=</button>
+              </div>
+            </section>
+          </div>
+        </form>
+
+        <footer class="instrument-footer"><span>EXPRESSIONS UP TO 120 CHARACTERS</span><span>NO HISTORY SAVED</span></footer>
+      </section>
+    </section>
+    <footer class="page-footer"><span>FIELDNOTE STUDIO</span><span>THOUGHTFUL TOOLS FOR EVERYDAY WORK</span><span>01 — 03</span></footer>
+  </main>
+</body>
+</html>

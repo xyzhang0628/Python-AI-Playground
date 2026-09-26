@@ -1,0 +1,21 @@
+# Project Requirements
+
+## Business Requirements
+A personal website that showcase a designer's past work.
+
+## User Requirements
+- A website that has three tabs including work, extra, and about.
+- Use https://oscarhealth.com/'s visual style as a reference, using the colors, and use the font type and font style from it.
+- For the work page, using placeholders for the layout, include 6 projects.
+- For the extra page, it means to showcase designer's personal design work, like graphic design, visual design, spatial design, photography, etc.
+- For the about page, it is the place for this designer's personal introduction, a bit background of her, and link of her resume and email.
+- This designer is specialized in working across digital products, physical environments, and spatial technology, designing interactions that help people understand where they are, what's changing, and what to do next.
+- When mouse cursor move, the interaction change as well.A subtle cursor-following glow shifts across the background as the user moves through the page. and Hover-trigger icon transition.
+- Use
+
+## Software Requirements
+- Python 3
+- Python Flask
+- No JavaScript
+- HTML/CSS
+- Include a .md file that traces your development steps for reproducibility.
