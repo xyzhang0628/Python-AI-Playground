@@ -56,14 +56,19 @@ Expressions are limited to 120 characters and powers are range-checked.
 
 The sample designer portfolio is available at <http://127.0.0.1:5000/designer/>;
 the calculator remains at <http://127.0.0.1:5000/>. Work, Extra, and About are
-independent Flask-rendered pages. The portfolio uses HTML, CSS, and normal
-navigation, with no client-side scripts. Its background glow shifts between
-hovered regions using CSS; following the exact pointer position requires
-JavaScript and is therefore not used. The page references Oscar Health's
-publicly served TT Commons and Parafina fonts and Unsplash project photography.
+independent Flask-rendered pages. The portfolio uses HTML, CSS, normal links,
+and hover states, with no client-side scripts. CSS moves a soft background glow
+between hovered page regions; following the exact pointer position requires
+JavaScript and is intentionally not used.
 
-Project names and the Mina Park profile are illustrative portfolio placeholders.
-Replace the sample name, email, images, project descriptions, and downloadable
-resume text in `portfolio.py` and `templates/portfolio.html` with the designer's
-real content before publication. The standard library test suite covers both
-the calculator and the portfolio routes.
+The work page has six sample project layouts, and the Extra page has six
+personal-work studies. The two supplied images are served from `Home page images/`;
+the remaining project and extra layouts use CSS artwork. Oscar Health's public
+TT Commons and Parafina fonts and its soft pastel colors inform the visual
+direction. External font files require an internet connection; local fallbacks
+are provided.
+
+The name, contact details, project descriptions, and downloadable resume are
+illustrative placeholders. Replace them with the designer's verified
+information before publication. Run `python -m unittest discover -s tests -v`
+to check both applications.

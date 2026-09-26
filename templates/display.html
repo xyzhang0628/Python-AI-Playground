@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Calculation display</title>
+</head>
+<body class="display-document" data-theme="{{ theme }}">
+  <section class="display" aria-label="Calculation display">
+    <form method="post" action="{{ url_for('display') }}" target="calculator-display">
+      <label class="visually-hidden" for="expression">Expression</label>
+      <input id="expression" name="expression" type="text" inputmode="decimal"
+             autocomplete="off" maxlength="120" value="{{ expression }}"
+             placeholder="0" aria-describedby="display-result">
+      <input type="hidden" name="key" value="equals">
+    </form>
+    <div class="result-line" id="display-result" aria-live="polite">
+      {% if error %}<span class="error-message">{{ error }}</span>
+      {% elif result is not none %}<span class="result-equals">=</span> {{ result }}
+      {% else %}<span class="result-hint">{{ 'RADIANS' if expression else 'READY WHEN YOU ARE' }}</span>{% endif %}
+    </div>
+  </section>
+</body>
+</html>
